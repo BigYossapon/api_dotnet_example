@@ -1,0 +1,31 @@
+1.make out side
+2.
+# 1️⃣ สร้างโปรเจคหลัก
+dotnet new webapi -n userstructureapi
+cd userstructureapi
+
+# 2️⃣ สร้างโฟลเดอร์สำหรับ Unit Test และ Integration Test
+cd ..
+dotnet new xunit -n userstructureapi.Tests
+dotnet new xunit -n userstructureapi.IntegrationTests
+
+# 3️⃣ เพิ่มโปรเจคทดสอบลงใน Solution
+dotnet sln add userstructureapi.Tests/userstructureapi.Tests.csproj
+dotnet sln add userstructureapi.IntegrationTests/userstructureapi.IntegrationTests.csproj
+
+# 4️⃣ ลิงก์โปรเจคหลักกับโปรเจคทดสอบ
+dotnet add userstructureapi.Tests reference userstructureapi/userstructureapi.csproj
+dotnet add userstructureapi.IntegrationTests reference userstructureapi/userstructureapi.csproj
+
+# 5️⃣ ติดตั้ง NuGet Packages ที่จำเป็น
+dotnet add userstructureapi.Tests package xunit
+dotnet add userstructureapi.Tests package Moq
+dotnet add userstructureapi.Tests package FluentAssertions
+dotnet add userstructureapi.Tests package Microsoft.EntityFrameworkCore.InMemory
+
+dotnet add userstructureapi.IntegrationTests package Microsoft.AspNetCore.Mvc.Testing
+dotnet add userstructureapi.IntegrationTests package Microsoft.EntityFrameworkCore.InMemory
+dotnet add userstructureapi.IntegrationTests package xunit
+
+# 6️⃣ รันทดสอบครั้งแรก
+dotnet test
