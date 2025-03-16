@@ -59,6 +59,8 @@ public class AuthController : ControllerBase
         // try
         // {
         var otp = await _authService.GenerateOtpEFAsync(phoneNumber);
+
+
         return Ok(new { message = "OTP Sent", otp }); // **(ไม่ควรส่ง OTP กลับมาใน API จริง)**
                                                       // }
                                                       // catch (System.Exception)
@@ -66,6 +68,8 @@ public class AuthController : ControllerBase
                                                       // return Unauthorized(new { message = "OTP ไม่ถูกต้องหรือหมดอายุ" });
 
         // }
+
+
 
 
 

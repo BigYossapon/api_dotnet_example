@@ -1,4 +1,6 @@
+using System.Text;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using userstrctureapi.Models;
 namespace userstrctureapi.Data
 {
@@ -7,9 +9,11 @@ namespace userstrctureapi.Data
     public class AppDbContext : DbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
-
+        public DbSet<AuditLog> AuditLogs { get; set; } = default!;
         public DbSet<User> Users { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,5 +29,7 @@ namespace userstrctureapi.Data
                 .HasForeignKey(rt => rt.user_id)
                 .OnDelete(DeleteBehavior.Cascade);
         }
+
+
     }
 }

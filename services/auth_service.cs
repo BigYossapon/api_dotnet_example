@@ -44,6 +44,16 @@ namespace userstrctureapi.Services
                     OtpExpiry = expiry
                 };
                 await _db.Users.AddAsync(user);
+                try
+                {
+                    await _db.SaveChangesAsync();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error saving OTP: {ex.Message}");
+                    throw;
+                }
+                // await _db.SaveChangesAsync();
             }
             else
             {
@@ -51,7 +61,7 @@ namespace userstrctureapi.Services
                 user.otp = otp;
                 user.OtpExpiry = expiry;
             }
-
+            await TestConnectionAsync();
             await _db.SaveChangesAsync(); // บันทึกข้อมูลลงฐานข้อมูล
             return otp;
         }
@@ -291,6 +301,25 @@ namespace userstrctureapi.Services
                 rng.GetBytes(randomNumber);
             }
             return Convert.ToBase64String(randomNumber);
+        }
+
+        public async Task TestConnectionAsync()
+        {
+            try
+            {
+                // ใช้ DbContext ตรวจสอบการเชื่อมต่อ
+                var connection = _db.Database.GetDbConnection();
+                if (connection.State != ConnectionState.Open)
+                {
+                    await connection.OpenAsync();
+                }
+
+                Console.WriteLine("เชื่อมต่อกับ PostgreSQL สำเร็จ");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"ไม่สามารถเชื่อมต่อกับ PostgreSQL ได้: {ex.Message}");
+            }
         }
     }
 }

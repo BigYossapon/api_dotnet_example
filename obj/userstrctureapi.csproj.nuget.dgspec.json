@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ASUS\\Documents\\GitHub\\Dotnet_structure_api\\userstrctureapi\\userstrctureapi.csproj": {}
+    "C:\\Users\\ASUS\\Documents\\GitHub\\api_dotnet_example\\userstrctureapi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ASUS\\Documents\\GitHub\\Dotnet_structure_api\\userstrctureapi\\userstrctureapi.csproj": {
+    "C:\\Users\\ASUS\\Documents\\GitHub\\api_dotnet_example\\userstrctureapi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASUS\\Documents\\GitHub\\Dotnet_structure_api\\userstrctureapi\\userstrctureapi.csproj",
+        "projectUniqueName": "C:\\Users\\ASUS\\Documents\\GitHub\\api_dotnet_example\\userstrctureapi.csproj",
         "projectName": "userstrctureapi",
-        "projectPath": "C:\\Users\\ASUS\\Documents\\GitHub\\Dotnet_structure_api\\userstrctureapi\\userstrctureapi.csproj",
+        "projectPath": "C:\\Users\\ASUS\\Documents\\GitHub\\api_dotnet_example\\userstrctureapi.csproj",
         "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASUS\\Documents\\GitHub\\Dotnet_structure_api\\userstrctureapi\\obj\\",
+        "outputPath": "C:\\Users\\ASUS\\Documents\\GitHub\\api_dotnet_example\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -45,6 +45,14 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Audit.NET.PostgreSql": {
+              "target": "Package",
+              "version": "[27.5.0, )"
+            },
+            "FirebaseAdmin": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
             "FluentAssertions": {
               "target": "Package",
               "version": "[8.1.1, )"
@@ -55,7 +63,7 @@
             },
             "Microsoft.AspNetCore.Mvc.Testing": {
               "target": "Package",
-              "version": "[10.0.0-preview.1.25120.3, )"
+              "version": "[8.0.14, )"
             },
             "Microsoft.Data.SqlClient": {
               "target": "Package",
@@ -72,6 +80,10 @@
             "MySql.Data": {
               "target": "Package",
               "version": "[8.4.0, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[8.0.11, )"
             },
             "Pomelo.EntityFrameworkCore.MySql": {
               "target": "Package",
