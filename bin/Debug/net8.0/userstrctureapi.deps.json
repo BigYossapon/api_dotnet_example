@@ -36,7 +36,6 @@
     ".NETCoreApp,Version=v8.0": {
       "userstrctureapi/1.0.0": {
         "dependencies": {
-          "Audit.NET.PostgreSql": "27.5.0",
           "FirebaseAdmin": "3.1.0",
           "FluentAssertions": "8.1.1",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.11",
@@ -342,32 +341,6 @@
         },
         "compile": {
           "userstrctureapi.dll": {}
-        }
-      },
-      "Audit.NET/27.5.0": {
-        "runtime": {
-          "lib/net8.0/Audit.NET.dll": {
-            "assemblyVersion": "27.5.0.0",
-            "fileVersion": "27.5.0.0"
-          }
-        },
-        "compile": {
-          "lib/net8.0/Audit.NET.dll": {}
-        }
-      },
-      "Audit.NET.PostgreSql/27.5.0": {
-        "dependencies": {
-          "Audit.NET": "27.5.0",
-          "Npgsql": "9.0.2"
-        },
-        "runtime": {
-          "lib/net6.0/Audit.NET.PostgreSql.dll": {
-            "assemblyVersion": "27.5.0.0",
-            "fileVersion": "27.5.0.0"
-          }
-        },
-        "compile": {
-          "lib/net6.0/Audit.NET.PostgreSql.dll": {}
         }
       },
       "Azure.Core/1.38.0": {
@@ -1720,14 +1693,14 @@
           "lib/net6.0/Newtonsoft.Json.dll": {}
         }
       },
-      "Npgsql/9.0.2": {
+      "Npgsql/8.0.6": {
         "dependencies": {
           "Microsoft.Extensions.Logging.Abstractions": "8.0.2"
         },
         "runtime": {
           "lib/net8.0/Npgsql.dll": {
-            "assemblyVersion": "9.0.2.0",
-            "fileVersion": "9.0.2.0"
+            "assemblyVersion": "8.0.6.0",
+            "fileVersion": "8.0.6.0"
           }
         },
         "compile": {
@@ -1739,7 +1712,7 @@
           "Microsoft.EntityFrameworkCore": "8.0.13",
           "Microsoft.EntityFrameworkCore.Abstractions": "8.0.13",
           "Microsoft.EntityFrameworkCore.Relational": "8.0.13",
-          "Npgsql": "9.0.2"
+          "Npgsql": "8.0.6"
         },
         "runtime": {
           "lib/net8.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll": {
@@ -3939,20 +3912,6 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Audit.NET/27.5.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-JKq9NG1b0mf3H5mzNNGomZHHZ5UcItm/bovsC8wtPwa5LFwZvlFBpKP7yx4NDUbDkiRwfxe4xTd1ldDa0gwPMQ==",
-      "path": "audit.net/27.5.0",
-      "hashPath": "audit.net.27.5.0.nupkg.sha512"
-    },
-    "Audit.NET.PostgreSql/27.5.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-dkyux3nlkVLaKgn76Fz0aZoG33S7HmQg6VMKJXbFqujH6F2qZVvWGPs3p7G+NqlfmPy1oM8ck/8U9UkP6Cuq3w==",
-      "path": "audit.net.postgresql/27.5.0",
-      "hashPath": "audit.net.postgresql.27.5.0.nupkg.sha512"
-    },
     "Azure.Core/1.38.0": {
       "type": "package",
       "serviceable": true,
@@ -4506,12 +4465,12 @@
       "path": "newtonsoft.json/13.0.3",
       "hashPath": "newtonsoft.json.13.0.3.nupkg.sha512"
     },
-    "Npgsql/9.0.2": {
+    "Npgsql/8.0.6": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-hCbO8box7i/XXiTFqCJ3GoowyLqx3JXxyrbOJ6om7dr+eAknvBNhhUHeJVGAQo44sySZTfdVffp4BrtPeLZOAA==",
-      "path": "npgsql/9.0.2",
-      "hashPath": "npgsql.9.0.2.nupkg.sha512"
+      "sha512": "sha512-KaS6CY5kY2Sd0P00MSeFcOI3t2DiQ4UWG8AuRpVOUeDWITOKfoEEG91DP3cmT6aerixPkjwKgXxnpDxIkDpO6g==",
+      "path": "npgsql/8.0.6",
+      "hashPath": "npgsql.8.0.6.nupkg.sha512"
     },
     "Npgsql.EntityFrameworkCore.PostgreSQL/8.0.11": {
       "type": "package",

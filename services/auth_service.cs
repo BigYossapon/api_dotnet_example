@@ -10,19 +10,23 @@ using userstrctureapi.Data;
 using MySql.Data.MySqlClient;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using System.Text.Json;
 
 namespace userstrctureapi.Services
 {
     public class AuthService
     {
         private readonly string _connectionString;
-
         private readonly AppDbContext _db;
+        private readonly AuditDbContext _auditDb;
+        // private readonly AppDbContext _db;
         private readonly IConfiguration _config;
 
-        public AuthService(AppDbContext db, IConfiguration config)
+        public AuthService(AuditDbContext auditDb, AppDbContext db, IConfiguration config)
         {
             _db = db;
+            _auditDb = auditDb;
             _config = config;
             _connectionString = _config.GetConnectionString("DefaultConnection")!;
         }
@@ -44,15 +48,7 @@ namespace userstrctureapi.Services
                     OtpExpiry = expiry
                 };
                 await _db.Users.AddAsync(user);
-                try
-                {
-                    await _db.SaveChangesAsync();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Error saving OTP: {ex.Message}");
-                    throw;
-                }
+
                 // await _db.SaveChangesAsync();
             }
             else
@@ -61,7 +57,28 @@ namespace userstrctureapi.Services
                 user.otp = otp;
                 user.OtpExpiry = expiry;
             }
-            await TestConnectionAsync();
+
+            // try
+            // {
+            //     var auditLog = new audit_logs
+            //     {
+            //         entity_name = "User",
+            //         action = "CREATE", // e.g., "Created"
+            //         changes = JsonDocument.Parse(JsonConvert.SerializeObject(user)), // Store user details in JSON format
+            //         timestamp = DateTime.UtcNow,
+            //         user_id = user.user_id.ToString() // You can replace this with the actual user performing the action
+            //     };
+            //     Console.WriteLine($"Audit Log: {JsonConvert.SerializeObject(auditLog)}");
+            //     await _auditDb.AuditLogs.AddAsync(auditLog);
+            //     await _auditDb.SaveChangesAsync();
+            //     await _db.SaveChangesAsync();
+            // }
+            // catch (Exception ex)
+            // {
+            //     Console.WriteLine($"Error saving OTP: {ex.Message}");
+            //     throw;
+            // }
+            // await TestConnectionAsync();
             await _db.SaveChangesAsync(); // บันทึกข้อมูลลงฐานข้อมูล
             return otp;
         }

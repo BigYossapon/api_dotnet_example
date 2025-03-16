@@ -11,10 +11,8 @@ namespace userstrctureapi.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-
-            // Optional: Configure the table name explicitly (if it is different from the class name)
             modelBuilder.Entity<AuditLog>().ToTable("audit_logs");
+
         }
     }
 }

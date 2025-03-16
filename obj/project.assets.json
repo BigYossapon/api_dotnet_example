@@ -2,36 +2,6 @@
   "version": 3,
   "targets": {
     "net8.0": {
-      "Audit.NET/27.5.0": {
-        "type": "package",
-        "compile": {
-          "lib/net8.0/Audit.NET.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/Audit.NET.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Audit.NET.PostgreSql/27.5.0": {
-        "type": "package",
-        "dependencies": {
-          "Audit.NET": "27.5.0",
-          "npgsql": "9.0.2"
-        },
-        "compile": {
-          "lib/net6.0/Audit.NET.PostgreSql.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net6.0/Audit.NET.PostgreSql.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "Azure.Core/1.38.0": {
         "type": "package",
         "dependencies": {
@@ -1754,10 +1724,10 @@
           }
         }
       },
-      "Npgsql/9.0.2": {
+      "Npgsql/8.0.6": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.Logging.Abstractions": "8.0.2"
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.0"
         },
         "compile": {
           "lib/net8.0/Npgsql.dll": {
@@ -2604,58 +2574,6 @@
     }
   },
   "libraries": {
-    "Audit.NET/27.5.0": {
-      "sha512": "JKq9NG1b0mf3H5mzNNGomZHHZ5UcItm/bovsC8wtPwa5LFwZvlFBpKP7yx4NDUbDkiRwfxe4xTd1ldDa0gwPMQ==",
-      "type": "package",
-      "path": "audit.net/27.5.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "LICENSE/LICENSE",
-        "README.md",
-        "audit.net.27.5.0.nupkg.sha512",
-        "audit.net.nuspec",
-        "icon.png",
-        "lib/net462/Audit.NET.dll",
-        "lib/net462/Audit.NET.xml",
-        "lib/net472/Audit.NET.dll",
-        "lib/net472/Audit.NET.xml",
-        "lib/net6.0/Audit.NET.dll",
-        "lib/net6.0/Audit.NET.xml",
-        "lib/net7.0/Audit.NET.dll",
-        "lib/net7.0/Audit.NET.xml",
-        "lib/net8.0/Audit.NET.dll",
-        "lib/net8.0/Audit.NET.xml",
-        "lib/net9.0/Audit.NET.dll",
-        "lib/net9.0/Audit.NET.xml",
-        "lib/netstandard2.0/Audit.NET.dll",
-        "lib/netstandard2.0/Audit.NET.xml",
-        "lib/netstandard2.1/Audit.NET.dll",
-        "lib/netstandard2.1/Audit.NET.xml"
-      ]
-    },
-    "Audit.NET.PostgreSql/27.5.0": {
-      "sha512": "dkyux3nlkVLaKgn76Fz0aZoG33S7HmQg6VMKJXbFqujH6F2qZVvWGPs3p7G+NqlfmPy1oM8ck/8U9UkP6Cuq3w==",
-      "type": "package",
-      "path": "audit.net.postgresql/27.5.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "LICENSE/LICENSE",
-        "README.md",
-        "audit.net.postgresql.27.5.0.nupkg.sha512",
-        "audit.net.postgresql.nuspec",
-        "icon.png",
-        "lib/net462/Audit.NET.PostgreSql.dll",
-        "lib/net462/Audit.NET.PostgreSql.xml",
-        "lib/net6.0/Audit.NET.PostgreSql.dll",
-        "lib/net6.0/Audit.NET.PostgreSql.xml",
-        "lib/netstandard2.0/Audit.NET.PostgreSql.dll",
-        "lib/netstandard2.0/Audit.NET.PostgreSql.xml",
-        "lib/netstandard2.1/Audit.NET.PostgreSql.dll",
-        "lib/netstandard2.1/Audit.NET.PostgreSql.xml"
-      ]
-    },
     "Azure.Core/1.38.0": {
       "sha512": "IuEgCoVA0ef7E4pQtpC3+TkPbzaoQfa77HlfJDmfuaJUCVJmn7fT0izamZiryW5sYUFKizsftIxMkXKbgIcPMQ==",
       "type": "package",
@@ -5091,19 +5009,25 @@
         "packageIcon.png"
       ]
     },
-    "Npgsql/9.0.2": {
-      "sha512": "hCbO8box7i/XXiTFqCJ3GoowyLqx3JXxyrbOJ6om7dr+eAknvBNhhUHeJVGAQo44sySZTfdVffp4BrtPeLZOAA==",
+    "Npgsql/8.0.6": {
+      "sha512": "KaS6CY5kY2Sd0P00MSeFcOI3t2DiQ4UWG8AuRpVOUeDWITOKfoEEG91DP3cmT6aerixPkjwKgXxnpDxIkDpO6g==",
       "type": "package",
-      "path": "npgsql/9.0.2",
+      "path": "npgsql/8.0.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "README.md",
         "lib/net6.0/Npgsql.dll",
         "lib/net6.0/Npgsql.xml",
+        "lib/net7.0/Npgsql.dll",
+        "lib/net7.0/Npgsql.xml",
         "lib/net8.0/Npgsql.dll",
         "lib/net8.0/Npgsql.xml",
-        "npgsql.9.0.2.nupkg.sha512",
+        "lib/netstandard2.0/Npgsql.dll",
+        "lib/netstandard2.0/Npgsql.xml",
+        "lib/netstandard2.1/Npgsql.dll",
+        "lib/netstandard2.1/Npgsql.xml",
+        "npgsql.8.0.6.nupkg.sha512",
         "npgsql.nuspec",
         "postgresql.png"
       ]
@@ -6831,7 +6755,6 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "Audit.NET.PostgreSql >= 27.5.0",
       "FirebaseAdmin >= 3.1.0",
       "FluentAssertions >= 8.1.1",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 8.0.11",
@@ -6895,10 +6818,6 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
-          "Audit.NET.PostgreSql": {
-            "target": "Package",
-            "version": "[27.5.0, )"
-          },
           "FirebaseAdmin": {
             "target": "Package",
             "version": "[3.1.0, )"

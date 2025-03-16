@@ -404,8 +404,6 @@ C:\Users\ASUS\Documents\GitHub\api_dotnet_example\bin\Debug\net8.0\refs\System.X
 C:\Users\ASUS\Documents\GitHub\api_dotnet_example\bin\Debug\net8.0\refs\System.Xml.XPath.dll
 C:\Users\ASUS\Documents\GitHub\api_dotnet_example\bin\Debug\net8.0\refs\System.Xml.XPath.XDocument.dll
 C:\Users\ASUS\Documents\GitHub\api_dotnet_example\bin\Debug\net8.0\refs\WindowsBase.dll
-C:\Users\ASUS\Documents\GitHub\api_dotnet_example\bin\Debug\net8.0\Audit.NET.dll
-C:\Users\ASUS\Documents\GitHub\api_dotnet_example\bin\Debug\net8.0\Audit.NET.PostgreSql.dll
 C:\Users\ASUS\Documents\GitHub\api_dotnet_example\bin\Debug\net8.0\Azure.Core.dll
 C:\Users\ASUS\Documents\GitHub\api_dotnet_example\bin\Debug\net8.0\Azure.Identity.dll
 C:\Users\ASUS\Documents\GitHub\api_dotnet_example\bin\Debug\net8.0\BouncyCastle.Cryptography.dll

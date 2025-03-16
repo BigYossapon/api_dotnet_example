@@ -2,8 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using userstrctureapi.Services;
 public class VerifyOtpRequest
 {
-    public string otp { get; set; }
-    public string phone { get; set; }
+    public string otp { get; set; } = string.Empty;
+    public string phone { get; set; } = string.Empty;
 }
 [Route("api/auth")]
 [ApiController]
@@ -93,14 +93,14 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("refresh")]
-    public async Task<IActionResult> RefreshToken([FromBody] string refreshToken)
+    public IActionResult RefreshToken([FromBody] string refreshToken)
     {
         // **(ต้องมีการตรวจสอบว่า refreshToken นี้ถูกต้องและยังไม่หมดอายุ)**
         return Ok(new { jwt = "new-jwt-token" });
     }
 
     [HttpPost("logout")]
-    public async Task<IActionResult> Logout([FromBody] string refreshToken)
+    public IActionResult Logout([FromBody] string refreshToken)
     {
         // **(ลบ refreshToken ออกจากฐานข้อมูล)**
         return Ok(new { message = "Logged out" });

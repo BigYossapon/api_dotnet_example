@@ -8,61 +8,55 @@ using userstrctureapi.Data;
 public class AuditInterceptor : SaveChangesInterceptor
 {
     private readonly AuditDbContext _auditDbContext;
-    private readonly IHttpContextAccessor _httpContextAccessor;
 
-    public AuditInterceptor(AuditDbContext auditDbContext, IHttpContextAccessor httpContextAccessor)
+    public AuditInterceptor(AuditDbContext auditDbContext)
     {
         _auditDbContext = auditDbContext;
-        _httpContextAccessor = httpContextAccessor;
     }
 
-    public override async ValueTask<int> SavedChangesAsync(SaveChangesCompletedEventData eventData, int result, CancellationToken cancellationToken = default)
+    public override ValueTask<int> SavedChangesAsync(SaveChangesCompletedEventData eventData, int result, CancellationToken cancellationToken = default)
     {
-        var context = eventData.Context;
-        if (context == null) return result;
-
         var auditLogs = new List<AuditLog>();
 
-        foreach (var entry in context.ChangeTracker.Entries())
+        foreach (var entry in eventData.Context.ChangeTracker.Entries())
         {
-            if (entry.State == EntityState.Unchanged) continue;
-
-            var auditLog = new AuditLog
+            if (entry.State == EntityState.Added || entry.State == EntityState.Modified || entry.State == EntityState.Deleted)
             {
-                EntityName = entry.Entity.GetType().Name,
-                Action = entry.State.ToString(),
-                Timestamp = DateTime.UtcNow,
-                Changes = GetChanges(entry)
-            };
+                var auditLog = new AuditLog
+                {
+                    EntityName = entry.Entity.GetType().Name,
+                    Action = entry.State.ToString(),
+                    Changes = JsonDocument.Parse(GetChanges(entry)),
+                    Timestamp = DateTime.UtcNow,
+                    UserId = "System" // ต้องใช้ Auth Middleware เพื่อดึง UserId จริง
+                };
 
-            // ดึง User ID จาก HttpContext (เช่น JWT Token)
-            var httpContext = _httpContextAccessor.HttpContext;
-            auditLog.UserId = httpContext?.User.Identity?.Name ?? "Unknown";
-
-            auditLogs.Add(auditLog);
+                auditLogs.Add(auditLog);
+            }
         }
 
-        if (auditLogs.Any())
+        if (auditLogs.Count > 0)
         {
             _auditDbContext.AuditLogs.AddRange(auditLogs);
-            await _auditDbContext.SaveChangesAsync(cancellationToken);
+            _auditDbContext.SaveChanges();
         }
 
-        return result;
+        return base.SavedChangesAsync(eventData, result, cancellationToken);
     }
 
-    private static string GetChanges(EntityEntry entry)
+    private string GetChanges(EntityEntry entry)
     {
         var changes = new Dictionary<string, object>();
 
-        foreach (var property in entry.OriginalValues.Properties)
+        foreach (var prop in entry.Properties)
         {
-            var originalValue = entry.OriginalValues[property];
-            var currentValue = entry.CurrentValues[property];
-
-            if (!Equals(originalValue, currentValue))
+            if (entry.State == EntityState.Modified && prop.IsModified)
             {
-                changes[property.Name] = new { Old = originalValue, New = currentValue };
+                changes[prop.Metadata.Name] = new { OldValue = prop.OriginalValue, NewValue = prop.CurrentValue };
+            }
+            else if (entry.State == EntityState.Added)
+            {
+                changes[prop.Metadata.Name] = new { NewValue = prop.CurrentValue };
             }
         }
 

@@ -14,13 +14,15 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 var connectionStringpg = builder.Configuration.GetConnectionString("PostgresConnection");
 // 📌 ลงทะเบียน DbContext ให้ใช้ MySQL
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddScoped<AuditInterceptor>();
 // builder.Services.AddDbContext<AppDbContext>(options =>
 //     options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 21))));
 builder.Services.AddDbContext<AuditDbContext>(options =>
     options.UseNpgsql(connectionStringpg));
 
-builder.Services.AddHttpContextAccessor(); // ✅ ต้องมีบรรทัดนี้!
-builder.Services.AddScoped<AuditInterceptor>();
+// builder.Services.AddHttpContextAccessor(); // ✅ ต้องมีบรรทัดนี้!
+// builder.Services.AddScoped<AuditInterceptor>();
 
 // ➤ 3. ลงทะเบียน `AppDbContext` สำหรับ MySQL พร้อม Interceptor
 builder.Services.AddDbContext<AppDbContext>((serviceProvider, options) =>
@@ -70,12 +72,15 @@ builder.Services.AddSwaggerGen();
 //     Credential = GoogleCredential.FromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "mauifirebasedemo-firebase-adminsdk.json")),
 // });
 var app = builder.Build();
+
+
+
 app.UseMiddleware<AuditMiddleware>();
-using (var scope = app.Services.CreateScope())
-{
-    var auditDb = scope.ServiceProvider.GetRequiredService<AuditDbContext>();
-    // auditDb.Database.EnsureCreated(); // สร้าง Table อัตโนมัติ
-}
+// using (var scope = app.Services.CreateScope())
+// {
+//     var auditDb = scope.ServiceProvider.GetRequiredService<AuditDbContext>();
+//     // auditDb.Database.EnsureCreated(); // สร้าง Table อัตโนมัติ
+// }
 
 if (app.Environment.IsDevelopment()) // ใช้เฉพาะใน Development
 {

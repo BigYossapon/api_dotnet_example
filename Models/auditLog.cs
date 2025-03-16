@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json;
 
 namespace userstrctureapi.Models
 {
@@ -7,19 +8,17 @@ namespace userstrctureapi.Models
     public class AuditLog
     {
         [Key]
+        [Column("id")]
         public int Id { get; set; }
-
-        [Required]
+        [Column("entity_name")]
         public string EntityName { get; set; } = string.Empty;
-
-        [Required]
-        public string Action { get; set; } = string.Empty; // Added, Modified, Deleted
-
-        public string? Changes { get; set; } // เก็บ JSON หรือข้อความแสดงการเปลี่ยนแปลง
-
-        [Required]
+        [Column("action")]
+        public string Action { get; set; } = string.Empty;// Insert, Update, Delete
+        [Column("changes", TypeName = "jsonb")]
+        public JsonDocument Changes { get; set; } // JSON ของค่าที่เปลี่ยนแปลง
+        [Column("timestamp")]
         public DateTime Timestamp { get; set; } = DateTime.UtcNow;
-
-        public string? UserId { get; set; } // ใครเป็นคนแก้ไข?
+        [Column("user_id")]
+        public string UserId { get; set; } = string.Empty;// ผู้ที่กระทำการ
     }
 }
