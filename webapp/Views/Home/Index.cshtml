@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+<!DOCTYPE html>
+<html>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignalR Real-Time Notifications</title>
+</head>
+
+<body>
+    <h2>SignalR Notification</h2>
+    <button onclick="sendTestNotification()">Send API Notification</button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.11/signalr.min.js"></script>
+    <script>
+        // เชื่อมต่อไปยัง SignalR Hub
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("http://localhost:5157/realtimehub") // เปลี่ยน URL ตาม API ของคุณ
+            .build();
+
+        // Event เมื่อได้รับ Notification
+        connection.on("ReceiveNotification", (message) => {
+            alert("🔔 Notification: " + message);
+        });
+
+        // เริ่มเชื่อมต่อ
+        connection.start()
+            .then(() => console.log("✅ Connected to SignalR"))
+            .catch(err => console.error("❌ SignalR Error:", err));
+
+        // ฟังก์ชันส่ง API Request ไปยัง Server
+        function sendTestNotification() {
+            fetch("http://localhost:5157/api/notification", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify("Hello from API!")
+            })
+                .then(res => res.json())
+                .then(data => console.log("✅ API Response:", data))
+                .catch(err => console.error("❌ API Error:", err));
+        }
+    </script>
+</body>
+
+</html>
