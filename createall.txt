@@ -1,0 +1,3 @@
+$dotnet new webapi --use-controllers -o TodoApi
+for web 
+$dotnet new mvc -n MyMvcApp     
